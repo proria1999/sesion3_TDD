@@ -12,6 +12,13 @@ public class Cuenta {
 		this.titular = titular;
 	}
 	
+	public Cuenta(String numero, String titular, double saldoInicial) {
+		super();
+		this.numero = numero;
+		this.titular = titular;
+		this.saldo = saldoInicial;
+	}
+	
 	public String getNumero() {
 		return numero;
 	}
@@ -36,7 +43,12 @@ public class Cuenta {
 	}
 	
 	public void reintegrar(int i) {
-		saldo+=i;
+		// El límite de descubierto es de -500€
+		if (saldo - i >= -500) {
+			saldo -= i;
+		} else {
+			System.out.println("Fondos insuficientes (saldo " + saldo + "€) en la cuenta " + numero + " para el reintegro de " + i + "€");
+		}
 	}
 	
 	
